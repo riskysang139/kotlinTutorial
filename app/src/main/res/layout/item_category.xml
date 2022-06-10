@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="category"
+            type="com.example.kotlintutorial.home.Category" />
+    </data>
+
+    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="9dp"
+        android:paddingHorizontal="24dp"
+        android:background="@{category.isChoose == true ? @drawable/bg_choice_category : @drawable/bg_category}"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="15sp"
+        android:text="@{category.type}">
+    </TextView>
+</layout>

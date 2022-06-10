@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.example.kotlintutorial.home.ResultsFilm" />
+    </data>
+
+    <com.makeramen.roundedimageview.RoundedImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imgPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:image="@{movie.posterPath}"
+        app:riv_corner_radius="14dp" />
+
+</layout>
