@@ -3,7 +3,7 @@
     <data>
         <variable
             name="category"
-            type="com.example.kotlintutorial.home.Category" />
+            type="com.example.kotlintutorial.ui.home.Category" />
     </data>
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingVertical="9dp"
         android:paddingHorizontal="24dp"
-        android:background="@{category.isChoose == true ? @drawable/bg_choice_category : @drawable/bg_category}"
+        android:background="@{category.isChoose ? @drawable/bg_choice_category : @drawable/bg_category}"
         android:gravity="center"
         android:textColor="@color/white"
         android:fontFamily="@font/roboto_medium"

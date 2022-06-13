@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupView() {
         adapter = ViewPagerAdapter(this)
-        binding.viewPager.adapter = adapter;
+        binding.viewPager.adapter = adapter
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -56,8 +56,6 @@ class MainActivity : AppCompatActivity() {
             return@setOnItemSelectedListener true
         }
     }
-
-
     @SuppressLint("ObsoleteSdkInt")
     private fun setupStatusBar() {
         if (Build.VERSION.SDK_INT in 19..20) {
@@ -72,15 +70,16 @@ class MainActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
     }
-
-    private fun setWindowFlag(activity: Activity, bits: Int, on: Boolean) {
-        val win = activity.window
-        val winParams = win.attributes
-        if (on) {
-            winParams.flags = winParams.flags or bits
-        } else {
-            winParams.flags = winParams.flags and bits.inv()
+    companion object {
+        fun setWindowFlag(activity: Activity, bits: Int, on: Boolean) {
+            val win = activity.window
+            val winParams = win.attributes
+            if (on) {
+                winParams.flags = winParams.flags or bits
+            } else {
+                winParams.flags = winParams.flags and bits.inv()
+            }
+            win.attributes = winParams
         }
-        win.attributes = winParams
     }
 }

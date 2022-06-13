@@ -1,5 +1,6 @@
-package com.example.kotlintutorial.home
+package com.example.kotlintutorial.ui.home
 
+import com.example.kotlintutorial.base.Convert
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -28,6 +29,7 @@ class ResultsFilm {
     @SerializedName("original_title")
     @Expose
     var originalTitle: String? = ""
+        get() = if (field.isNullOrEmpty()) "" else field
 
     @SerializedName("overview")
     @Expose
@@ -40,6 +42,7 @@ class ResultsFilm {
     @SerializedName("poster_path")
     @Expose
     var posterPath: String? = ""
+        get() = if (field.isNullOrEmpty()) "" else field
 
     @SerializedName("release_date")
     @Expose
@@ -55,12 +58,20 @@ class ResultsFilm {
 
     @SerializedName("vote_average")
     @Expose
-    var voteAverage: Double? = 0.0
+    var voteAverage: Float? = 0.0F
 
     @SerializedName("vote_count")
     @Expose
     var voteCount: Int? = 0
     var type = 0
+
+    fun getVoteAverageFormat(): Float {
+        return voteAverage?.div(2) ?: 0.0F
+    }
+
+    fun getVoteAverageFormatString(): String {
+        return "($voteAverage)"
+    }
 
 
     override fun toString(): String {

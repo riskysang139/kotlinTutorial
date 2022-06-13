@@ -1,4 +1,4 @@
-package com.example.kotlintutorial.myticket
+package com.example.kotlintutorial.ui.myticket
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.kotlintutorial.R
-import com.example.kotlintutorial.myticket.MyTicketFragment
+import com.example.kotlintutorial.ui.myticket.MyTicketFragment
 
 class MyTicketFragment : Fragment() {
     override fun onCreateView(

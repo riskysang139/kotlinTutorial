@@ -1,4 +1,4 @@
-package com.example.kotlintutorial.wallet
+package com.example.kotlintutorial.ui.wallet
 
 import android.os.Bundle
 import android.view.LayoutInflater

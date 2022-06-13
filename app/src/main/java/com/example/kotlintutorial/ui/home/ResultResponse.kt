@@ -1,4 +1,4 @@
-package com.example.kotlintutorial.home
+package com.example.kotlintutorial.ui.home
 
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose

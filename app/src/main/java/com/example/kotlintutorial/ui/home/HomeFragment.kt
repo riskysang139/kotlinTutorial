@@ -1,5 +1,6 @@
-package com.example.kotlintutorial.home
+package com.example.kotlintutorial.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,13 +18,16 @@ import com.example.kotlintutorial.base.HorizontalItemDecorationNew
 import com.example.kotlintutorial.base.Utils
 import com.example.kotlintutorial.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() , CategoryAdapter.OnClick{
+class HomeFragment : Fragment() , CategoryAdapter.OnClick {
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
     private lateinit var listNowPlayingFilm: List<ResultsFilm>
     private lateinit var nowPlayingAdapter: NowPlayingFilmAdapter
-    private lateinit var listUpComingFilm: List<ResultsFilm>
+    private lateinit var listComingSoon: List<ResultsFilm>
     private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var comingSoonAdapter: ComingSoonAdapter
+    private lateinit var promoAdapter: PromoAdapter
+
 
     companion object {
         val instance: HomeFragment
@@ -51,15 +55,20 @@ class HomeFragment : Fragment() , CategoryAdapter.OnClick{
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         observerPlayingFilm()
+        observerComingFilm()
     }
 
     private fun observerPlayingFilm() {
         viewModel.fetchNowPlayingFilm(Constant.API_KEY, 1)
         viewModel.getNowPlayingFilm().observe(viewLifecycleOwner) { t: ResultResponse ->
-            listNowPlayingFilm = t.results
-            nowPlayingAdapter = NowPlayingFilmAdapter(listNowPlayingFilm)
-            binding.listNowPlaying.adapter = nowPlayingAdapter
-            onAutoScrollAD()
+            nowPlayingAdapter.setFilmList(t.results)
+        }
+    }
+
+    private fun observerComingFilm() {
+        viewModel.fetchComingSoonFilm(Constant.API_KEY, 1)
+        viewModel.getComingSoonFilm().observe(viewLifecycleOwner) { t: ResultResponse ->
+            comingSoonAdapter.setFilmList(t.results)
         }
     }
 
@@ -68,6 +77,19 @@ class HomeFragment : Fragment() , CategoryAdapter.OnClick{
         binding.rcvCategory.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         binding.rcvCategory.addItemDecoration(HorizontalItemDecorationNew(Utils.dpToPx(requireContext(), 12), 0))
         binding.rcvCategory.adapter = categoryAdapter
+
+        nowPlayingAdapter = NowPlayingFilmAdapter(listOf())
+        binding.listNowPlaying.adapter = nowPlayingAdapter
+        onAutoScrollAD()
+
+        comingSoonAdapter = ComingSoonAdapter(listOf())
+        binding.rcvComingSoon.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        binding.rcvComingSoon.addItemDecoration(HorizontalItemDecorationNew(Utils.dpToPx(requireContext(), 12), Utils.dpToPx(requireContext(), 12)))
+        binding.rcvComingSoon.adapter = comingSoonAdapter
+
+        promoAdapter = PromoAdapter(Promo.createListEvent())
+        binding.rcvPromo.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        binding.rcvPromo.adapter = promoAdapter
     }
 
     private fun onAutoScrollAD() {

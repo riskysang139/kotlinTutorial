@@ -1,4 +1,4 @@
-package com.example.kotlintutorial.home
+package com.example.kotlintutorial.ui.home
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

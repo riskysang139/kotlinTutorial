@@ -1,14 +1,11 @@
-package com.example.kotlintutorial.home
+package com.example.kotlintutorial.ui.home
 
 class Category {
 
-    lateinit var type: String
+    var type: String
     var isChoose: Boolean = false
     constructor(type: String = "") {
         this.type = type
-    }
-    constructor(isChoose: Boolean) {
-        this.isChoose = isChoose
     }
 
 

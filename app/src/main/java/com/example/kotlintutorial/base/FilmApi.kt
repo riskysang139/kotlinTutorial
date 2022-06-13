@@ -1,6 +1,6 @@
 package com.example.kotlintutorial.base
 
-import com.example.kotlintutorial.home.ResultResponse
+import com.example.kotlintutorial.ui.home.ResultResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
